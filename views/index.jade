@@ -2,4 +2,6 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p(class="testing") Welcome to #{title}! Search for a movie to rate:
+  input(placeholder="enter a movie title here")
+  button Search
