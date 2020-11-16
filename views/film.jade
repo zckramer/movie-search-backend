@@ -1,11 +1,6 @@
 extends layout
 
 block content
-  //- h1= title
-  //- p(class="testing") Welcome to #{title}! Search for a movie to rate:
-  //- form
-  //-    input(placeholder="enter a movie title here" id="searchField")
-  //-    button Search
-  each item in searchResults
-    script.console.log(item)
-    a(href="https://www.google.com")=item.movieTitle
+  //- each item, index in {"title":'title'}
+  p= searchResults.title ? searchResults.title : "Couldn't find anything"
+  img(src=searchResults.poster)
