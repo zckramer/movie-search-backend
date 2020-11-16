@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:search', function(req, res, next) {
-
+  console.log("searching for..." + req.params.search)
   fetch(BASE_URL + req.params.search, 
     {headers: {
       "x-rapidapi-key": "712cf7e599mshd8ec9264a3d789ep1033c0jsn37f3b002f14f",
@@ -21,12 +21,7 @@ router.get('/:search', function(req, res, next) {
     })
     .then(response => response.json())
     .then(data => res.render('film', { searchResults : data }))
-
-  
-  
 })
-
-
 
 module.exports = router;
 

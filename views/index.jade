@@ -3,6 +3,6 @@ extends layout
 block content
   h1= title
   p(class="testing") Welcome to #{title}! Search for a movie to rate:
-  form#movieSearch(name="movieSearch" action="/film/" method="get")
-     input#search(name="search" type="text" placeholder="enter a movie title here")
+  form#movieSearch(action="/film/")
+     input(type="text" placeholder="enter a movie title here")
      button(type="submit") Search
