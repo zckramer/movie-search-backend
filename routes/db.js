@@ -13,19 +13,17 @@ router.get('/:movieID', async function(req, res, next) {
   client.connect( async err => {
     const collection = client.db("ZKDB").collection("MovieSearch");
     const cursor = await collection.findOne({'id': req.params.movieID});
-    
-    if (cursor === null) {
-      data = {"asdf": "error"}
-    } else {
+
+    if (cursor != null){
       data = cursor
+      console.log("Return Data: ", data) // this is logging what I want correctly
+      res.send(data);
+    } else {
+      res.send({"asdf":"error"});
     }
-    console.log("Return Data: ", data)
-    return res
+
   })
-  
   client.close()
-  // .then(response => response.json())
-  // .then(data => res.send({ data }))
 })
 
 
