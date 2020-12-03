@@ -12,6 +12,7 @@ app.use(cors());
 var indexRouter = require('./routes/index');
 var filmRouter = require('./routes/film');
 var searchRouter = require('./routes/search');
+var dbRouter = require('./routes/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/film', filmRouter);
-app.use('/search', searchRouter)
+app.use('/search', searchRouter);
+app.use('/db', dbRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
-const fetch = require('node-fetch');
+var fetch = require('node-fetch');
 
 const BASE_URL = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/"
 
