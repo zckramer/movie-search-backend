@@ -1,10 +1,7 @@
 var express = require('express');
-var movieVotesModel = require('../models/movieVotes');
-
 var router = express.Router();
-
+var movieVotesModel = require('../models/movieVotes');
 const MongoClient = require('mongodb').MongoClient;
-
 
 const url = "mongodb+srv://zckramer:spicegirls@personalprojectcluster.6nak7.mongodb.net/ZKDB?retryWrites=true&w=majority"
 
@@ -30,6 +27,7 @@ router.get('/:movieID', async function(req, res, next) {
 
 // INSERT data (insertOne)
 router.post('/insert', function(req, res, next) {
+  console.log("req.body : ", req.body)
   const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
   client.connect( async err => {
     const collection = client.db("ZKDB").collection("MovieSearch");
@@ -50,12 +48,10 @@ router.patch('/patch/:vote', function(req, res, next) {
       const thingToChange = await collection.findOne({'id': req.body.id})
       console.log("req.body : ", req.body)
       console.log("thing to change: ", thingToChange)
-      await collection.updateOne({'id': req.body.id}, { '$set' : req.body }) // how to replace the old one with the new one???
+      await collection.updateOne({'id': req.body.id}, { '$set' : req.body }) 
       .then(console.log("update made successfully"))
     }
-    
-      // console.log("connection = ", collection)
-    
+        
   })
   res.status(201).send('Success!');
   client.close()
