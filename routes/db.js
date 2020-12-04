@@ -39,4 +39,27 @@ router.post('/insert', function(req, res, next) {
   client.close()
 });
 
+// PATCH
+router.patch('/patch/:vote', function(req, res, next) {
+  const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  client.connect( async err => {
+    const collection = client.db("ZKDB").collection("MovieSearch");
+    console.log("client connected! vote param : " + req.params.vote)
+    
+    if (req.params.vote === "upvote" || req.params.vote === "downvote") {
+      const thingToChange = await collection.findOne({'id': req.body.id})
+      console.log("req.body : ", req.body)
+      console.log("thing to change: ", thingToChange)
+      await collection.updateOne({'id': req.body.id}, { '$set' : req.body }) // how to replace the old one with the new one???
+      .then(console.log("update made successfully"))
+    }
+    
+      // console.log("connection = ", collection)
+    
+  })
+  res.status(201).send('Success!');
+  client.close()
+});
+
+
 module.exports = router;
