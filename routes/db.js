@@ -31,7 +31,11 @@ router.post('/insert', function(req, res, next) {
   const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
   client.connect( async err => {
     const collection = client.db("ZKDB").collection("MovieSearch");
-    await collection.insertOne(req.body);
+    try {
+      await collection.replaceOne(req.body)
+    } catch (error) {
+      await collection.insertOne(req.body);
+    }
   })
   res.status(201).send('Success!');
   client.close()
