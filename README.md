@@ -2,7 +2,7 @@
 This API has a front-end.
 
 the link to the front-end repo: 
-https://github.com/zckramer/movie-search-frontend
+https://github.com/zckramer/movie-search-frontend/tree/master
 
 The front end can be accessed by default at localhost 3000
 
